@@ -114,20 +114,6 @@ function App() {
         </form>
 
         <div className="h-[62vh] overflow-auto">
-          {/* 1. search by name only
-if (searchByNameInput!='' && searchByTagInput=='')
-apply filter on searchByName only
-
-2. search by tag only
-if (searchByNameInput=='' && searchByTagInput!='')
-  if (!student.tags) return false
-  else apply filter on searchByTag only
-
-3. search by name and tag
-else
-if (!student.tags) return false
-  else apply filter on searchByName and searchByTag */}
-
           {students
             .filter((student) => {
               //0. no search needed
@@ -197,7 +183,7 @@ if (!student.tags) return false
               }
 
               //default return is true, just in case
-              else return true;
+              return true;
             })
             .map((student, index) => {
               return (
