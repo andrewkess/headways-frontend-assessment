@@ -77,7 +77,7 @@ function App() {
   }
 
   return (
-    <div className="bg-gray-200 p-20 min-h-screen">
+    <div className="bg-gray-200 p-2 sm:p-20 min-h-screen">
       <div className="bg-white border border-gray-400 rounded-lg max-w-xl container mx-auto">
         <form action="#" className="m-2" id="searchByName">
           <input
@@ -143,7 +143,9 @@ function App() {
                   // console.log(match);
                   student.tags.forEach((tag) => {
                     //console.log(student.tags[index]);
-                    if (tag.includes(searchByTagInput)) {
+                    if (
+                      tag.toUpperCase().includes(searchByTagInput.toUpperCase())
+                    ) {
                       // console.log('match', searchByTagInput, tag);
                       // //return true; ???
                       match = true;
@@ -164,7 +166,9 @@ function App() {
                   // console.log(match);
                   student.tags.forEach((tag) => {
                     //console.log(student.tags[index]);
-                    if (tag.includes(searchByTagInput)) {
+                    if (
+                      tag.toUpperCase().includes(searchByTagInput.toUpperCase())
+                    ) {
                       // console.log('match', searchByTagInput, tag);
                       // //return true; ???
                       match = true;
@@ -197,7 +201,7 @@ function App() {
                   </div>
 
                   <div className="my-3 grow">
-                    <div className="font-bold text-3xl font-raleway cursor-default">
+                    <div className="font-bold text-xl sm:text-3xl font-raleway cursor-default">
                       {student.firstName.toUpperCase()}{' '}
                       {student.lastName.toUpperCase()}
                     </div>
@@ -272,7 +276,7 @@ function App() {
 
                   <div className="mt-3 flex-none">
                     <button
-                      className="px-3 text-3xl text-gray-400 hover:text-black"
+                      className="px-3 text-2xl sm:text-3xl text-gray-400 hover:text-black"
                       onClick={() =>
                         toggleGrades(
                           student.company + index,
