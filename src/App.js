@@ -51,7 +51,7 @@ function App() {
         return (
           <div
             key={tag + index}
-            className="rounded-md mt-2 px-2 py-1 bg-gray-300 mr-1 text-sm font-raleway cursor-default"
+            className="font-raleway mt-2 mr-1 cursor-default rounded-md bg-gray-300 px-2 py-1 text-sm"
           >
             {tag}
           </div>
@@ -77,8 +77,8 @@ function App() {
   }
 
   return (
-    <div className="bg-gray-200 p-2 sm:p-20 min-h-screen">
-      <div className="bg-white border border-gray-400 rounded-lg max-w-xl container mx-auto">
+    <div className="min-h-screen bg-gray-200 p-2 sm:p-20">
+      <div className="container mx-auto max-w-xl rounded-lg border border-gray-400 bg-white">
         <form action="#" className="m-2" id="searchByName">
           <input
             type="text"
@@ -86,7 +86,7 @@ function App() {
             name="name"
             placeholder="Search by name"
             value={searchByNameInput}
-            className="p-1 border-b-2 hover:border-black text-md font-raleway w-full focus:outline-none text-black"
+            className="text-md font-raleway w-full border-b-2 p-1 text-black hover:border-black focus:outline-none"
             onFocus={(e) => (e.target.placeholder = '')}
             onBlur={(e) => (e.target.placeholder = 'Search by name')}
             onChange={(e) => {
@@ -103,7 +103,7 @@ function App() {
             name="tagsSearch"
             placeholder="Search by tag"
             value={searchByTagInput}
-            className="p-1 border-b-2 hover:border-black text-md font-raleway w-full focus:outline-none text-black"
+            className="text-md font-raleway w-full border-b-2 p-1 text-black hover:border-black focus:outline-none"
             onFocus={(e) => (e.target.placeholder = '')}
             onBlur={(e) => (e.target.placeholder = 'Search by tag')}
             onChange={(e) => {
@@ -195,17 +195,17 @@ function App() {
                   <div className="m-3 flex-none">
                     <img
                       src={student.pic}
-                      className="w-20 h-20 rounded-full border border-gray-400"
+                      className="h-20 w-20 rounded-full border border-gray-400"
                       alt={student.company}
                     />
                   </div>
 
                   <div className="my-3 grow">
-                    <div className="font-bold text-xl sm:text-3xl font-raleway cursor-default">
+                    <div className="font-raleway cursor-default text-xl font-bold sm:text-3xl">
                       {student.firstName.toUpperCase()}{' '}
                       {student.lastName.toUpperCase()}
                     </div>
-                    <div className="pl-3 text-sm font-raleway cursor-default">
+                    <div className="font-raleway cursor-default pl-3 text-sm">
                       Email: {student.email}
                       <br />
                       Company: {student.company}
@@ -223,7 +223,7 @@ function App() {
                         return (
                           <div
                             key={student.lastName + 'grades' + index}
-                            className="pl-3 text-sm font-raleway cursor-default"
+                            className="font-raleway cursor-default pl-3 text-sm"
                           >
                             Test {index + 1}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{' '}
                             {test}%
@@ -247,7 +247,7 @@ function App() {
                         id="tag"
                         name="tag"
                         placeholder="Add a tag"
-                        className="p-1 border-b-2 hover:border-black text-sm font-raleway focus:outline-none text-black"
+                        className="font-raleway border-b-2 p-1 text-sm text-black hover:border-black focus:outline-none"
                         onFocus={(e) => (e.target.placeholder = '')}
                         onBlur={(e) => (e.target.placeholder = 'Add a tag')}
                         //            console.log('onchange is triggered');
@@ -276,7 +276,7 @@ function App() {
 
                   <div className="mt-3 flex-none">
                     <button
-                      className="px-3 text-2xl sm:text-3xl text-gray-400 hover:text-black"
+                      className="px-3 text-2xl text-gray-400 hover:text-black sm:text-3xl"
                       onClick={() =>
                         toggleGrades(
                           student.company + index,
