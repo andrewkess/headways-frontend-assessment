@@ -79,7 +79,7 @@ function App() {
 
   return (
     <div className='grid min-h-screen place-content-center bg-gray-200'>
-      <div className='container mx-auto max-w-xl rounded-lg border border-gray-400 bg-white'>
+      <div className='m-2 min-w-[60vw] max-w-xl rounded-lg border border-gray-400 bg-white'>
 
         {/* Search by name form */}
         <form action='#' className='m-2' id='searchByName'>
@@ -183,7 +183,7 @@ function App() {
                     />
                   </div>
 
-                  <div className='my-3 grow'>
+                  <div className='my-3 grow overflow-hidden'>
                     <div className='font-raleway cursor-default text-xl font-bold sm:text-3xl'>
                       {student.firstName.toUpperCase()}{' '}
                       {student.lastName.toUpperCase()}
