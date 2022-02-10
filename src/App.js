@@ -79,7 +79,7 @@ function App() {
 
   return (
     <div className='grid min-h-screen place-content-center bg-gray-200'>
-      <div className='m-2 min-w-[60vw] max-w-xl rounded-lg border border-gray-400 bg-white'>
+      <div className='w-[95vw] sm:w-[600px] rounded-lg border border-gray-400 bg-white'>
 
         {/* Search by name form */}
         <form action='#' className='m-2' id='searchByName'>
