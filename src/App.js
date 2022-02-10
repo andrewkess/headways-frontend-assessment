@@ -87,6 +87,7 @@ function App() {
             className='text-md font-raleway w-full border-b-2 p-1 text-black hover:border-black focus:outline-none'
             onFocus={(e) => (e.target.placeholder = '')}
             onBlur={(e) => (e.target.placeholder = 'Search by name')}
+            // Each time the input changes, its value is saved into state
             onChange={(e) => { setSearchByNameInput(e.target.value); }} />
         </form>
 
@@ -96,15 +97,21 @@ function App() {
             className='text-md font-raleway w-full border-b-2 p-1 text-black hover:border-black focus:outline-none'
             onFocus={(e) => (e.target.placeholder = '')}
             onBlur={(e) => (e.target.placeholder = 'Search by tag')}
+            // Each time the input changes, its value is saved into state
             onChange={(e) => { setSearchByTagInput(e.target.value); }} />
         </form>
 
+        {/* Display of students */}
         <div className='h-[62vh] overflow-auto'>
+          {/* In order to display students correctly, we filter the students array saved in state by the user-supplied search inputs  */}
           {students.filter((student) => {
-            //0. no search needed
+
+            // There are 4 different search scenarios to take into account when filtering the students array
+
+            //1. no search filtering needed
             if (searchByNameInput === '' && searchByTagInput === '') return true;
 
-            //1. search by name only
+            //2. search by name only
             else if (searchByNameInput !== '' && searchByTagInput === '') {
               //apply filter on searchByName only
               return student.firstName
@@ -114,11 +121,11 @@ function App() {
                 .includes(searchByNameInput.toUpperCase());
             }
 
-            //2. search by tag only
+            //3. search by tag only
             else if (searchByTagInput !== '' && searchByNameInput === '') {
               // console.log(student.tags);
 
-              //if student doesn't have any tags, then return false (filter)
+              //if student doesn't have any tags, then return false (filter the student out of displayed results)
               if (!student.tags) return false;
               //else if student has tags, apply filter on searchByTag only
               else if (student.tags) {
@@ -134,12 +141,11 @@ function App() {
                     match = true;
                   }
                 });
-
                 return match;
               }
             }
 
-            //3. search by name and tag
+            //4. search by both name and tag
             else if (searchByTagInput !== '' && searchByNameInput !== '') {
               //if student doesn't have any tags, then return false (filter)
               if (!student.tags) return false;
@@ -172,9 +178,12 @@ function App() {
             //default return is true, just in case
             return true;
           })
+            //Once the students are correctly filtered based on the search inputs, we display each student
             .map((student, index) => {
               return (
                 <div key={index} className='flex justify-between border-b'>
+
+                  {/* Display 1st flex column: student pic */}
                   <div className='m-3 flex-none'>
                     <img
                       src={student.pic}
@@ -183,25 +192,20 @@ function App() {
                     />
                   </div>
 
+                  {/* Display 2nd flex column: student information */}
                   <div className='my-3 grow overflow-hidden'>
                     <div className='font-raleway cursor-default text-xl font-bold sm:text-3xl'>
                       {student.firstName.toUpperCase()}{' '}
                       {student.lastName.toUpperCase()}
                     </div>
                     <div className='font-raleway cursor-default pl-3 text-sm'>
-                      Email: {student.email}
-                      <br />
-                      Company: {student.company}
-                      <br />
-                      Skill: {student.skill}
-                      <br />
-                      Average:{' '}
-                      {student.grades.reduce((a, b) => a + parseInt(b), 0) /
-                        student.grades.length}
-                      %
+                      Email: {student.email}<br />
+                      Company: {student.company}<br />
+                      Skill: {student.skill}<br />
+                      Average: {student.grades.reduce((a, b) => a + parseInt(b), 0) / student.grades.length}%
                     </div>
 
-                    {/* Print out student grades */}
+                    {/* Display student grades but add a special CSS class that keeps it hidden until the + button is toggled */}
                     <div id={student.company + index} className='js-hide mt-2'>
                       {student.grades.map((test, index) => {
                         return (
@@ -212,7 +216,7 @@ function App() {
                       })}
                     </div>
 
-                    {/* Print out tags, if student has tags */}
+                    {/* Print out tags, if student has tags saved */}
                     <div className='flex flex-wrap pl-3'>{displayTags(student)}</div>
 
                     {/* Form to add tags */}
@@ -224,7 +228,7 @@ function App() {
                     </form>
                   </div>
 
-                  {/* 3rd flex column, containg button to open/close student grades panel  */}
+                  {/* 3rd flex column, button to toggle (open/close) student grades  */}
                   <div className='mt-3 flex-none'>
                     <button className='px-3 text-2xl text-gray-400 hover:text-black sm:text-3xl'
                       onClick={() => toggleGrades(student.company + index, student.lastName + 'button')}>
